@@ -1,0 +1,7 @@
+node_modules
+.vscode
+assets
+bin
+public
+index.js
+*.json
