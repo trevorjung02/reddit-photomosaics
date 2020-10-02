@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<head>
+   <meta charset="utf-8">
+   <title>Daily Photomosaic</title>
+   <!-- Compiled and minified CSS -->
+   <!-- Compiled and minified CSS -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+   <!-- Compiled and minified JavaScript -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+
+<body>
+   <nav>
+      <div class="nav-wrapper">
+         <a class="brand-logo center">Daily Photomosaic</a>
+      </div>
+   </nav>
+
+   <div class="section">
+      <div class="container">
+         <img class="responsive-img">
+      </div>
+   </div>
+
+   <div class="section">
+      <div class="container">
+         <div class="progress" id="progressbar">
+            <div class="indeterminate"></div>
+         </div>
+      </div>
+   </div>
+
+   <script>
+      const https = require('https');
+      https.get('https://top-photo-mosaic.herokuapp.com/photomosaic', (res) => {
+         let resData = '';
+         res.on('data', function (data) {
+            resData += data;
+         });
+         res.on('end', function () {
+            console.log(resData);
+            let imgPath = JSON.parse(resData);
+            progressbar.remove();
+            image.src = imgPath.src;
+         });
+      });
+      const image = document.querySelector('img');
+      const progressbar = document.getElementById('progressbar');
+   </script>
+</body>
+
+</html>

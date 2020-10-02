@@ -1,0 +1,32 @@
+{
+   "name": "top-photo-mosaic-desktop",
+   "version": "1.0.0",
+   "description": "",
+   "main": "index.js",
+   "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "start": "electron .",
+      "debug": "electron .",
+      "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --prune=true --out=release-builds",
+      "package-win": "electron-packager . photomosaic-generator --overwrite --asar=true --platform=win32 --arch=x64 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"PhotomosaicGenerator\"",
+      "package-linux": "electron-packager . photomosaic-generator --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/icons/png/1024x1024.png --prune=true --out=release-builds"
+   },
+   "author": "Trevor Jung",
+   "license": "ISC",
+   "engines": {
+      "node": "14.x"
+   },
+   "dependencies": {
+      "cheerio": "^1.0.0-rc.3",
+      "cloudinary": "^1.23.0",
+      "dotenv": "^8.2.0",
+      "puppeteer": "^5.2.1",
+      "sharp": "^0.26.1",
+      "tree-kill": "^1.2.2"
+   },
+   "devDependencies": {
+      "electron": "^10.1.2",
+      "electron-packager": "^15.1.0",
+      "electron-rebuild": "^2.0.3"
+   }
+}

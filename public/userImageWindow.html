@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <title>Create Photomosaic</title>
+   <!-- Compiled and minified CSS -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+   <!-- Compiled and minified JavaScript -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+
+<body>
+   <nav>
+      <div class="nav-wrapper">
+         <a class="brand-logo center">Your Image Is Being Created</a>
+      </div>
+   </nav>
+
+   <div class="section">
+      <div class="container">
+         <img class="responsive-img">
+      </div>
+   </div>
+
+   <div class="section">
+      <div class="container">
+         <div class="progress" id="progressbar">
+            <div class="indeterminate"></div>
+         </div>
+      </div>
+   </div>
+
+   <script>
+      const electron = require('electron');
+      const { ipcRenderer } = electron;
+
+      const header = document.querySelector('a');
+      const image = document.querySelector('img');
+      const progressbar = document.getElementById('progressbar');
+
+      ipcRenderer.on('complete', function (event, imgPath) {
+         console.log("Window recieved path: " + imgPath);
+         header.innerHTML = "Your New Photomosaic!";
+         progressbar.remove();
+         image.src = imgPath;
+      });
+   </script>
+</body>
+
+</html>
